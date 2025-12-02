@@ -11,10 +11,27 @@ body {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    margin: 4em 0 2em;
+    margin: 4em 0 1.5em;
 }
 
 .color-scheme-container {
     display: flex;
     justify-content: center;
+}
+
+.color-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #1F2937;
+    cursor: pointer;
+}
+
+.hex-footer {
+    color: #D5D4D8;
+    padding: 1em 0;
+    width: 100%;
+    text-align: center;
+    font-family: monospace;
+    font-size: 0.9rem;
 }
