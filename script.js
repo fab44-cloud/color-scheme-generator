@@ -11,7 +11,6 @@ function getColorScheme() {
 
     // Build the URL
     const apiURL = `https://www.thecolorapi.com/scheme?hex=${seedColorWithoutHash}&mode=${modeSelector}`
-    console.log(apiURL)
 
     const colorSchemeContainer = document.querySelector(".color-scheme-container")
     colorSchemeContainer.innerHTML = ''
@@ -20,15 +19,29 @@ function getColorScheme() {
         .then(response => response.json())
         .then(data => {
             colorsArray = data.colors
-            console.log(colorsArray)
             colorsArray.forEach((color) => {
-                console.log("Hex value:", color.hex.value)
-            
-            const colorDiv = document.createElement("div")
-            colorDiv.style.backgroundColor = color.hex.value
-            colorDiv.style.height = "550px"
-            colorDiv.style.width = "110px"
-            colorSchemeContainer.appendChild(colorDiv)
+                const hexValue = color.hex.value
+
+                // Create a wrapper for the color block and the text
+                const colorWrapper = document.createElement("div")
+                colorWrapper.classList.add("color-wrapper")
+                
+                // Create the color block div
+                const colorDiv = document.createElement("div")
+                colorDiv.style.backgroundColor = hexValue
+                colorDiv.style.height = "550px"
+                colorDiv.style.width = "110px"
+
+                // Create a text element for the hex number
+                const hexText = document.createElement("p")
+                hexText.textContent = hexValue
+                hexText.classList.add("hex-footer")
+
+                //Append both elements into the wrapper
+                colorWrapper.appendChild(colorDiv)
+                colorWrapper.appendChild(hexText)
+
+                colorSchemeContainer.appendChild(colorWrapper)
             })
         })
         .catch(error => {
