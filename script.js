@@ -1,4 +1,19 @@
-// Use fetch to get the data
+function copyTextToClipboard(e) {
+    let hexValueToCopy
+
+    if (e.target.classList.contains("hex-footer")) {
+        hexValueToCopy = e.target.textContent
+    } else {
+        hexValueToCopy = e.currentTarget.dataset.hex
+    }
+
+    navigator.clipboard.writeText(hexValueToCopy).then(() => {
+        console.log(`Copied: ${hexValueToCopy}`)
+    }).catch(err => {
+        console.error("Could not copy text: ", err)
+    })
+}
+
 function getColorScheme() {
     // Find the input and get its value
     const seedColor = document.getElementById("seedColorPicker").value
@@ -25,6 +40,10 @@ function getColorScheme() {
                 // Create a wrapper for the color block and the text
                 const colorWrapper = document.createElement("div")
                 colorWrapper.classList.add("color-wrapper")
+                colorWrapper.dataset.hex = hexValue
+
+                // Attach click listener to the wrapper
+                colorWrapper.addEventListener("click", copyTextToClipboard)
                 
                 // Create the color block div
                 const colorDiv = document.createElement("div")
