@@ -29,7 +29,7 @@ body {
 
 .hex-footer {
     color: #D5D4D8;
-    padding: 1em 0;
+    padding-top: 1em;
     width: 100%;
     text-align: center;
     font-family: monospace;
